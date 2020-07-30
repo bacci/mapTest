@@ -95,11 +95,11 @@ class Buscas extends CI_Controller
 
             foreach($array as $cep) {
 
-                // passo anterior a valida��o pois foi identificado que o arquivo possu�a 7 d�gitos (Faltando o zero inicial)
+                // passo anterior a valida��o pois foi identificado que o arquivo possuía 7 dígitos (Faltando o zero inicial)
                 $cep = $this->tratarCep($cep);
 
                 if(!$this->verificaCep($cep)){
-                    echo "Cep $cep inv�lido, pulando\n";
+                    echo "Cep $cep inválido, pulando\n";
                     continue;
                 } else {
                     echo "Verificando Cep $cep\n";
@@ -107,7 +107,13 @@ class Buscas extends CI_Controller
 
                 $resultados = $this->pegakiapi->getPontos($cep);
 
-                print_r($resultados);
+                foreach($resultados as $resultado) {
+
+                    $endereco_string = $resultado->nome_fantasia." - ".$resultado->endereco.", ".$resultado->numero." - ".
+                                        $resultado->bairro." ".$resultado->cidade." / ".$resultado->estado;
+
+                    file_put_contents($arquivo_processado, $cep.";".utf8_decode($endereco_string).";\n", FILE_APPEND);
+                }
             }
 
         } catch (\Exception $e) {

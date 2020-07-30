@@ -56,14 +56,6 @@
           zoom: 8
         });
 
-        var beaches = [
-          ['RAMI GAS', -23.53672490, -46.51220660, 1],
-          ['DELUX MOBILIA', -23.54981310, -46.51546180, 2],
-          ['SALGADOS E BOLOS DA SI', -23.50600220, -46.50895730, 3],
-          ['IN LINE', -23.65399540, -46.54257410, 4],
-          ['ARMAZEM DOS CEREAIS', -23.56151250, -46.58323550, 5]
-        ];
-
         setMarkers(map, pontos);
 
       }
